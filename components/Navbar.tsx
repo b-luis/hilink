@@ -1,9 +1,14 @@
+"use client";
+
+import { useState } from "react";
 import { NAV_LINKS } from "@/constants";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
 
 const Navbar = () => {
+  const [toggle, setToggle] = useState(false);
+
   return (
     <nav className="flexBetween max-container padding-container relative z-30 py-5">
       <Link href="/">
@@ -28,14 +33,32 @@ const Navbar = () => {
           variant="btn_dark_green"
         />
       </div>
-
-      <Image
-        src="menu.svg"
-        alt="menu"
-        width={32}
-        height={32}
-        className="inline-block cursor-pointer lg:hidden"
-      />
+      <button onClick={() => setToggle((prev) => !prev)}>
+        <Image
+          src="menu.svg"
+          alt="menu"
+          width={32}
+          height={32}
+          className="inline-block cursor-pointer lg:hidden"
+        />
+      </button>
+      <div
+        className={`${
+          toggle ? "flex" : "hidden"
+        } min-w-[120px] absolute z-10 top-20 right-0 bg-gray-30 p-5 lg:hidden rounded-xl mx-4 my-2`}
+      >
+        <ul>
+          {NAV_LINKS.map((link) => (
+            <Link
+              href={link.href}
+              key={link.key}
+              className="regular-16 text-white flexCenter cursor-pointer pb-1.5 transition-all hover:font-bold"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };
