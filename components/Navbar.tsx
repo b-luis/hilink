@@ -25,7 +25,7 @@ const Navbar = () => {
           </Link>
         ))}
       </ul>
-      <div className="lg:flexCenter hidden">
+      <div className="lg:flex lg:flex-end hidden">
         <Button
           type="button"
           title="Login"
@@ -33,7 +33,7 @@ const Navbar = () => {
           variant="btn_dark_green"
         />
       </div>
-      <button onClick={() => setToggle((prev) => !prev)}>
+      <button className="lg:hidden" onClick={() => setToggle((prev) => !prev)}>
         <Image
           src="menu.svg"
           alt="menu"
